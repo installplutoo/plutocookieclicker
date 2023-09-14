@@ -1,0 +1,12 @@
+{
+    "manifest_version": 3,
+    "version": "1.0",
+    "name": "CookieClicker",
+    "action": {
+        "default_popup": "cookieclicker.html",
+        "default_icon": "cookiebutton.png"
+    },
+    "permissions": [
+        "tabs"
+    ]
+}

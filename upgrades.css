@@ -1,0 +1,9 @@
+body{
+    background-image: url("picnictable.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    min-width: 650px;
+    max-height: 480px;
+    
+    
+}
