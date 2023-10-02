@@ -21,13 +21,14 @@ function updateTimer(newTimer){
     localStorage.setItem("timerSave", newTimer)
 }
 
-export { sMultiplier, updateMultiplier, points, updatePoints, timerId , newTimer, pointCounter};
+export { sMultiplier, updateMultiplier, points, updatePoints, timerId , newTimer, pointCounter };
 const cookieClick = document.getElementById("press-me")
 const scoreBrd = document.getElementById("score-brd")
 const HighScore = document.getElementById("high-score")
 const startT = document.getElementById("start")
 const timerCd = document.getElementById("timer")
 const pointCounter = document.getElementById("points")
+const dispmult = document.getElementById("multdisplay")
 
 document.addEventListener('DOMContentLoaded', function() {
     // All your code goes here
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 timerCd.innerHTML = `00`;
 
 
-
+dispmult.innerHTML = `${localStorage.getItem("sMultiplier")||1}x`
 
 
 let score = 0

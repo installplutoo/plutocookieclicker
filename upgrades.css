@@ -7,8 +7,8 @@ body{
     background-image: url("picnictable.jpg");
     background-repeat: no-repeat;
     background-size:cover;
-    min-width: 650px;
-    max-height: 480px;
+    width: 650px;
+    height: 480px;
     
     
 }
@@ -33,13 +33,14 @@ body{
   position: absolute;
   top: 5px;
   right: 5px;
+  margin-top:-55px;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #424340;
- 
+  
   min-width: 120px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -76,8 +77,10 @@ p {
 .container {
   background-color: #424340;
   width: 80%;
+  height:40px;
   border-radius: 15px;
   display: inline-block;
+  margin-left:6px;
   
 }
 
@@ -89,17 +92,24 @@ p {
   font-size: 17px;
   border-radius: 15px;
   
+  
 }
 
 #skill-mult {
   width: 10%;
   font-family: 'Poppins', sans-serif;
+  height:40px;
+  white-space: nowrap;
+  padding-top:8px;
  
 }
 
 #skill-time {
   width: 10%;
+  height:40px;
   font-family: 'Poppins', sans-serif;
+  padding-top:8px;
+  white-space: nowrap;
 
 }
 h1{
@@ -125,4 +135,24 @@ cursor: pointer;
 color:white;
 font-size: 22px;
 font-weight: bold;
+
+}
+#mcost, #tcost {
+  padding-top: 0px;
+  margin-top:60px;
+  margin-left:10px;
+  background-color: #0C356A;
+  font-family: 'Poppins', sans-serif;
+  width:180px;
+  color: white;
+  white-space: nowrap;
+  font-size: 16px;
+  max-height: 50px;
+  border-radius: 6px;
+  border: 2px solid white;
+  padding-left:6px;
+}
+#points {
+  margin-top: 93px;
+  margin-left:10px; 
 }

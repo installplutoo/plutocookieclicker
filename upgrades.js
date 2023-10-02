@@ -9,7 +9,7 @@ let isFirstUpgradeM = localStorage.getItem(firstUpgKey) !== "false";
 let oUpgM = firstUpgM;
 
 let isFirstUpgradeT = localStorage.getItem("UpgOne") !== "false"
-let firstUpgT = isFirstUpgradeT ? 500 : Math.ceil(localStorage.getItem("UpgOne") * 1.5);
+let firstUpgT = isFirstUpgradeT ? 500 : Math.round(localStorage.getItem("UpgValueT"));
 
 
 
@@ -19,18 +19,14 @@ const multbar = document.getElementById("skill-mult")
 const timebar = document.getElementById("skill-time")
 const mcostUpg = document.getElementById("mcost")
 const tcostUpg = document.getElementById("tcost")
+
 let pts = localStorage.getItem("pointSave")||0;
 pointCounter.innerHTML = `Points: ${pts}`
 
 
 mcostUpg.innerHTML = `2x Multiplier: $${firstUpgM}`;
-tcostUpg.innerHTML = `+5  Time: ${firstUpgT}`
+tcostUpg.innerHTML = `+5(s)  Time: $${firstUpgT}`
 
-function disabledbtn(lclbutton, button){
-  if(localStorage.getItem(lclbutton) === '5'){
-    button.style.backgroundcolor = '#4477CE';
-}
-}
 
 multupg.addEventListener("click", function upgMult() {
   if (isFirstUpgradeM && points >= firstUpgM) {
@@ -93,18 +89,23 @@ multupg.addEventListener("click", function upgMult() {
     
     
       }
-  } else if(JSON.parse(localStorage.getItem("pointSave")) < JSON.parse(localStorage.getItem("firstUpg"))){
+  } else if(localStorage.getItem("pointSave") < localStorage.getItem("firstUpg") || 500  ){
     alert("You do not have enough points");
   }
  
-console.log('maxUpgMult:', JSON.parse(localStorage.getItem('maxUpgMult')));
-console.log('multibarWidth:', JSON.parse(localStorage.getItem('multibarWidth')));
-  if ( localStorage.getItem("maxUpgMult") === '5' || localStorage.getItem("multibarWidth")==='100') {
-    multupg.disabled = true;
-    localStorage.setItem("maxUpgMult", '5');  // Update maxUpg to '5s'in localStorage
-    console.log("You have reached max upgrades");
-    return
+//console.log('maxUpgMult:', parseFloat(localStorage.getItem('maxUpgMult')));
+//console.log(typeof parseFloat(localStorage.getItem('maxUpgMult')))
+//console.log('multibarWidth:', parseFloat(localStorage.getItem('multibarWidth')));
+  
+if (localStorage.getItem("multbarWidth") ==='100') {
+    multupg.disabled = true
+    multupg.style.opacity = '.4'
+
+    setTimeout(() => {
+      alert("You have reached max upgrades");
+    }, 0);
   }
+  
 }
 
   
@@ -130,16 +131,17 @@ timeupg.addEventListener("click", function () {
     const newWidth = currentWidth + 20
     timebar.style.width = `${newWidth}%`
     localStorage.setItem("timebarWidth", newWidth)
-
+    localStorage.setItem("UpgValueT", upgradeCost)
     const timerValue = parseInt(localStorage.getItem("initialTimer")) || 5;
     timebar.innerHTML = `Timer: ${timerValue}`;
     
       if (isFirstUpgradeT) {
-      localStorage.setItem("UpgValueT", firstUpgT*1.5)
-      tcostUpg.innerHTML = `+5 Time: $${Math.round(upgradeCost)}`
-      const updatedPoints = points - firstUpgT;
+      let oUpgT = Math.ceil(upgradeCost * 1.5)
+      localStorage.setItem("UpgValueT", oUpgT)
+      tcostUpg.innerHTML = `+5(s) Time: $${Math.round(localStorage.getItem("UpgValueT"))}`
+      const updatedPoints = points - upgradeCost;
       pointCounter.innerHTML = `Points: ${updatedPoints}`
-     
+        console.log(isFirstUpgradeT)
         console.log(firstUpgT)
       isFirstUpgradeT = false;
       localStorage.setItem("UpgOne", isFirstUpgradeT)
@@ -147,15 +149,18 @@ timeupg.addEventListener("click", function () {
      
       
     } else {
-      firstUpgT = Math.ceil(firstUpgT * 1.5);
-      console.log(firstUpgT)
-      localStorage.setItem("UpgValueT", firstUpgT*1.5)
+      
+      let oUpgT = Math.ceil(localStorage.getItem("UpgValueT")*1.5);
+      console.log(oUpgT)
+      console.log(upgradeCost)
+      console.log(isFirstUpgradeT)
+      localStorage.setItem("UpgValueT", oUpgT)
       let valueUpg = localStorage.getItem("UpgValueT")
       let parsedUpg = parseFloat(valueUpg)
       let roundedUpg = Math.round(parsedUpg)
       
       const updatedPoints = points - firstUpgT;
-      tcostUpg.innerHTML = `+5  Time: $${roundedUpg}`
+      tcostUpg.innerHTML = `+5(s)  Time: $${roundedUpg}`
       pointCounter.innerHTML = `Points: ${updatedPoints}`
       updatePoints(updatedPoints); 
       
@@ -166,12 +171,15 @@ timeupg.addEventListener("click", function () {
    }
   
   
-    if (localStorage.getItem("initialTimer") === '30' || localStorage.getItem("maxUpg") === '5'|| localStorage.getItem("timebarWidth") === '100') {
-      timeupg.disabled = true;
-      localStorage.setItem("maxUpg", '5');  // Update maxUpg to '5s'in localStorage
-      console.log("You have reached max upgrades");
+    if ( localStorage.getItem("timebarWidth") === '100') {
+      timeupg.disabled = true
+      timeupg.style.opacity = '.4'
+  
+      setTimeout(() => {
+        alert("You have reached max upgrades");
+      }, 0);
       
-      disabledbtn(timeupg)
+      
       timebar.innerHTML = (`Timer: ${JSON.parse(localStorage.getItem("initialTimer"))}`)
     }
   //} else {
@@ -209,17 +217,30 @@ function startTimerFromLocalStorage() {
   if (storedWidth) {
     // Set the retrieved width as the initial width of timebar
     timebar.style.width = `${parseFloat(storedWidth)}%`;
+    if ( localStorage.getItem("timebarWidth") === '100') {
+      timeupg.disabled = true
+      timeupg.style.opacity = '.4'
+  
+    
+      
+      
+      timebar.innerHTML = (`Timer: ${JSON.parse(localStorage.getItem("initialTimer"))}`)
+    }
   }
   if (storedWidtht) {
     // Set the retrieved width as the initial width of timebar
     multbar.style.width = `${parseFloat(storedWidtht)}%`;
+    if (localStorage.getItem("multbarWidth") ==='100') {
+      multupg.disabled = true
+      multupg.style.opacity = '.4'
+    }
   } if (storedupg) {
     // Set the retrieved width as the initial width of timebar
     mcostUpg.innerHTML = JSON.parse(localStorage.getItem("firstUpg"))
   }
   if (storedTupg) {
     // Set the retrieved width as the initial width of timebar
-    tcostUpg.innerHTML =  `+5 Time: $${JSON.parse(Math.ceil(localStorage.getItem("UpgValueT")))}`
+    tcostUpg.innerHTML =  `+5(s) Time: $${JSON.parse(Math.ceil(localStorage.getItem("UpgValueT")))}`
   }
   
   
