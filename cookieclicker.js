@@ -133,7 +133,7 @@ function adjustTimer() {
 
 // Call the adjustTimer function when the page loads
 adjustTimer();
-let initialTimerId = localStorage.getItem("timerSave") || 5;  // Save initial timer value
+ 
 
 function startTimer() {
     clearInterval(cdt);
@@ -164,7 +164,11 @@ cookieClick.addEventListener("click", function(){
         console.log(`Score increment: ${score}`);
         scoreBrd.innerHTML = `Score: ${score}`;
         localStorage.setItem("scoreSave", score);
-        cookieClick.classList.toggle('cookieclicks');
+        cookieClick.classList.add('.cookieclicks');
+
+          setTimeout(function () {
+            cookieClick.classList.remove('.cookieclicks');
+        }, 300);
     }
 });
 function TryAgain(){
