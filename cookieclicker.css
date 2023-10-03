@@ -11,24 +11,20 @@ body{
     background-image: url("picnictable.jpg");
     background-repeat: no-repeat;
     background-size:cover;
-    width: 650px;
-    height: 480px;
-    
+    min-width: 400px;
+    min-height: 420px;
     
 }
-#press-me, #start{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    left: 200px;
-    bottom:50px;
-}
+
 #start:hover {
-    transform: scale(1.2);
+    transform: scale(3);
+    transform: translate(-50%,1400%);
 }
 #start{
-    left: 285px;
-    bottom:38px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,1400%);
     border-radius: 8px;
     border:1px solid white;
     margin:5px;
@@ -47,12 +43,16 @@ body{
 #press-me{
     background-size:cover;
     background: transparent;
-    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 40%);
     border-radius: 300px;
     border:none;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
     
 }
+
 /*#press-me:hover {
     transform: scale(.85);
   } 
@@ -152,8 +152,9 @@ h1, h2{
   }
   #timer {
     position: absolute;
-    top: 300px;
-    left: 45px;
+    top: 50%;
+    left: 70px;
+    transform: translate(-50%, 550%);
     padding-top: 19px;
     background-color: #424340;
     font-family: Ledsim-JRz7o;
@@ -169,8 +170,10 @@ h1, h2{
   }
   #multdisplay{
     position: absolute;
-    top: 255px;
-    left: 63px;
+    top: 50%;
+    left: 70px;
+    transform: translate(-50%, 990%);
+    
     background-color: #424340;
     font-family: Ledsim-JRz7o;
     font-weight: bold;
