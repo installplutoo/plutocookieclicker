@@ -5,7 +5,7 @@
   }
 @font-face {
   font-family: "Ledsim-JRz7o";
-  src: url(ledsim-font/Ledsim-JRz7o.ttf);
+  src: url(/Ledsim-JRz7o.ttf);
 }
 body{
     background-image: url("picnictable.jpg");
