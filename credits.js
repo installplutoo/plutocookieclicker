@@ -13,6 +13,8 @@ const cStateM = document.getElementById("tMusic")
 
 resetbtn.addEventListener("click", function(){
     localStorage.clear()
+    cStateM.innerHTML = `Music: ON`
+    cStateS.innerHTML = `Sound: ON`
 })
 
 toggleMusic.addEventListener("click", function(){

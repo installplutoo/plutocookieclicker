@@ -53,7 +53,7 @@ const speakericon = document.querySelector(".speaker")
 
 const tunes = new Audio("RuneFactorySpring.mp3")
 const menusound = new Audio("menubutton.mp3")
-const CClick = new Audio("Cookieclick.wav")
+
 document.addEventListener('DOMContentLoaded', function() {
 
     // All your code goes here
