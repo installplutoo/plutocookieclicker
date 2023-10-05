@@ -52,7 +52,7 @@ const speakericon = document.querySelector(".speaker")
 
 
 const tunes = new Audio("RuneFactorySpring.mp3")
-const menusound = new Audio("menubutton.mp3")
+const menusound = new Audio("menubutton.wav")
 
 document.addEventListener('DOMContentLoaded', function() {
 
