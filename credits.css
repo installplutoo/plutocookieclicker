@@ -1,0 +1,269 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  body{
+    background-image: url("picnictable.jpg");
+    background-repeat: repeat;
+    background-size:cover;
+  }
+  h1{
+    margin-top:20px;
+    font-family: 'Poppins', sans-serif;
+    color:#0C356A;
+    font-weight: 600;
+    background-color: #285fc1;
+    min-width: 100%;
+    padding: 15px;
+    margin-left:-8px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  .dropbtn {
+    display: block;
+    background-color: #4477CE;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    position:absolute;
+    right: 5px;
+    top:-3px;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 12px;
+    right: 5px;
+   
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #424340;
+    
+    min-width: 120px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 48px;
+    right: 3px;
+    border-radius: 10px;
+  }
+  
+  .dropdown-content a {
+    color:#4477CE;
+    padding: 12px 10px;
+    display: block;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    text-align: right;
+    font-weight: bold;
+  }
+  
+  .dropdown a:hover {
+    background-color: #ddd;
+  }
+  
+    .show {
+      display: block;
+  }
+    .wrapper {
+      position: relative;
+    }
+    #profile-pic{
+        background-image: url("profilepic.jpg");
+        border: 6px solid #285fc1;
+        border-radius: 20px;
+        background-repeat: no-repeat;
+        background-size:cover;
+        height: 300px;
+        width: 20%;
+        margin: 1.5% 3%;
+        position: absolute;
+        top:50%;
+        left: 10%;
+        transform: translate(-50%,0%);
+    }
+    
+    #container{
+        position: absolute;
+        top:50%;
+        left:50%;
+        width:40%;
+        height: 585px;
+        background-color:#424340;
+        
+        margin: 1.2%  2%;
+        border: 6px solid #285fc1;
+        border-radius: 20px;
+    }  
+
+
+    #set button,
+    #set1 button,
+    #set2 button {
+        vertical-align: middle;
+    }
+    
+    #set1 button {
+        margin-right: 10px; /* Adjust this margin as needed */
+        margin-top: 15%;
+    }
+    
+    #set2 button {
+        margin-right: 10px; /* Adjust this margin as needed */
+        margin-top: 15%;
+    }
+    #set button {
+      margin-right: 10px; /* Adjust this margin as needed */
+      margin-top: 20%;
+    }
+        
+    #togM, #togS, #resetI {
+      display: inline-block;
+      vertical-align: middle;
+      height:8%;
+      margin-left: 2%;
+      margin-top: 20%; /* Adjust this margin as needed */
+      font-size: 16px; /* Adjust the font size as needed */
+      font-family: 'Poppins', sans-serif;
+     
+      color: #2d76f4;
+  }
+
+  #reset,
+  #tMusic,
+  #tSound{
+    width: 15%;
+    height:10%;
+    margin-left:5%;
+    background-color: #285fc1;
+    font-family: 'Poppins', sans-serif;
+    color:#0C356A;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    font-weight: bold;
+    cursor:pointer;
+  }
+
+  #socials{
+    
+    position:absolute;
+    top: 90%;
+    left:0%;
+    transform: translate( 0%, 125%);
+    width:40%;
+    background-color:#424340;
+    margin: 1.2% 3%;
+    border: 6px solid #285fc1;
+    height: 260px;
+    border-radius: 20px;
+  }
+  #twitter{
+    
+    background-image: url("twitterlogo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+   
+  }
+  #github{
+    background-image: url("GitHub-logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  #discord{
+    background-image: url("discordlogo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+    
+  }
+  #twitter, #github, #discord{
+    display: inline-block;
+    padding: 6% 6%;
+    margin: 15% 10%;
+    border:none;
+    
+  }
+  #twitter:hover, #github:hover, #discord:hover{
+transform: scale(1.2);
+  }
+ 
+
+  @media only screen and (max-width: 1125px) {
+    #container{
+        position: absolute;
+        top:50%;
+        left:0%;
+        width:70%;
+        height: 400px;
+        background-color:#424340;
+       
+        margin: 3%  3%;
+        border: 6px solid #285fc1;
+        border-radius: 20px;
+    }
+    #profile-pic{
+      display:none;
+    }
+    #socials{
+        position:absolute;
+        top: 90%;
+        left:40.5%;
+        transform: translate( -50%, 180%);
+        width:80%;
+        background-color:#424340;
+        margin: 1.2% 3%;
+        border: 6px solid #285fc1;
+        height: 250px;
+        border-radius: 20px;
+      }
+      #twitter, #github, #discord{
+        display: inline-block;
+        padding: 6% 6%;
+        margin: 15% 9%;
+        border:none;
+        
+      }
+      #set1 , #set2  , #set {
+        margin-top:-5%;
+        
+      }
+     
+        
+    
+     
+  }
+  @media only screen and (max-width: 600px) {
+    #socials{
+        position:absolute;
+        top: 90%;
+        left:40.5%;
+        transform: translate( -50%, 290%);
+        width:80%;
+        background-color:#424340;
+        margin: 1.2% 3%;
+        border: 6px solid #285fc1;
+        height: 150px;
+        border-radius: 20px;
+        
+      }
+     
+  }
+  @media only screen and (max-width: 715px){
+    #reset,
+    #tMusic,
+    #tSound{
+      width:15%;
+      height:12%;
+      }
+  }

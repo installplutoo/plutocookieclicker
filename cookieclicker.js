@@ -1,3 +1,5 @@
+document.title = "Home - Cookie Clicker"
+
 let sMultiplier = localStorage.getItem("Multiplier") || 1;
 sMultiplier = parseInt(sMultiplier); // Parse as integer
 
@@ -20,8 +22,23 @@ function updateTimer(newTimer){
     timerId = newTimer;
     localStorage.setItem("timerSave", newTimer)
 }
+function playMusic(music){
+    let x =localStorage.getItem("ifMutedM") === "true"
+    if (x === false){
+        
+        music.play()
+    }
+}
 
-export { sMultiplier, updateMultiplier, points, updatePoints, timerId , newTimer, pointCounter };
+function playSound(sound){
+    let x =localStorage.getItem("ifMutedS") === "true"
+    if (x === false){
+        
+        sound.play()
+    }
+}
+
+export { sMultiplier, updateMultiplier, points, updatePoints, timerId , newTimer, pointCounter, menusound, playSound };
 const cookieClick = document.getElementById("press-me")
 const scoreBrd = document.getElementById("score-brd")
 const HighScore = document.getElementById("high-score")
@@ -29,8 +46,15 @@ const startT = document.getElementById("start")
 const timerCd = document.getElementById("timer")
 const pointCounter = document.getElementById("points")
 const dispmult = document.getElementById("multdisplay")
+let e = document.querySelector('.volume-slider-con');
+let eInner = document.querySelector('.volume-slider');
+const speakericon = document.querySelector(".speaker")
 
+
+const tunes = new Audio("RuneFactorySpring.mp3")
+const menusound = new Audio("menubutton.mp3")
 document.addEventListener('DOMContentLoaded', function() {
+
     // All your code goes here
   
 
@@ -68,6 +92,7 @@ function disabledBtn(){
 }
 
 
+
 function setHigh(){
     if(highs<score){
         localStorage.setItem("highscoreSave",score)
@@ -95,6 +120,7 @@ function countdown() {
         cookieClick.disabled = true;
         disabledBtn();
         setHigh();
+        tunes.pause()
         points = score + JSON.parse(localStorage.getItem("pointSave"));
         pointCounter.innerHTML = `Points: ${points}`;
         localStorage.setItem("pointSave", points);
@@ -142,6 +168,7 @@ function startTimer() {
     localStorage.setItem("initialTimer", timerId);  // Save initial timer value
     cookieClick.disabled = false;
     cdt = setInterval(countdown, 1000);
+    playMusic(tunes)
 }
 
 startT.addEventListener("click", startTimer);
@@ -149,10 +176,12 @@ if (localStorage.getItem("timerInProgress") === "true") {
     // Timer is in progress, use the current timer value
     timerId = localStorage.getItem("timerSave");
     cdt = setInterval(countdown, 1000);
+    
 } else {
     // Timer is not in progress, reset the timer to the initial value
     localStorage.removeItem("timerSave");
     localStorage.removeItem("timerInProgress");
+    
   
 }
 
@@ -185,6 +214,7 @@ document.addEventListener("click", function(event) {
     
     // Check if the clicked element is the button or inside the dropdown
     if (!event.target.matches('.dropbtn') && !dropdown.contains(event.target)) {
+        
         dropdown.classList.remove("show");
     }
     
@@ -193,7 +223,61 @@ document.addEventListener("click", function(event) {
 // Toggle the dropdown when clicking the dropbtn
 function myFunction() {
     const dropdown = document.getElementById("myDropdown");
+    
+    playSound(menusound)
     dropdown.classList.toggle("show");} 
 
 document.querySelector(".dropbtn").addEventListener("click", myFunction);
+
+
+
+//Volume bar
+
+let drag = false;
+e.addEventListener('mousedown',function(ev){
+   drag = true;
+   updateBar(ev.clientX);
 });
+document.addEventListener('mousemove',function(ev){
+   if(drag){
+      updateBar(ev.clientX);
+   }
+});
+document.addEventListener('mouseup',function(ev){
+ drag = false;
+});
+const updateBar = function (x, vol) {
+    const volume = e;
+        let percentage;
+        //if only volume have specificed
+        //then direct update volume
+        if (vol) {
+            percentage = vol * 100;
+        } else {
+            var position = x - volume.offsetLeft;
+            percentage = 100 * position / volume.clientWidth;
+        }
+
+        if (percentage > 100) {
+            percentage = 100;
+        }
+        if (percentage < 0) {
+            percentage = 0;
+            speakericon.style.backgroundImage = 'url("nosound.png")';
+
+        }
+        if (percentage > 0){
+            speakericon.style.backgroundImage = `url("speaker.png")`
+        }
+
+        //update volume bar and video volume
+        eInner.style.width = percentage +'%';
+        tunes.volume = percentage / 100;
+};
+
+
+});
+
+
+
+

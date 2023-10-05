@@ -1,5 +1,6 @@
+document.title = "Upgrades - Cookie Clicker"
 
-import { sMultiplier, updateMultiplier, points, updatePoints, newTimer, timerId, pointCounter } from "./cookieclicker.js";
+import { sMultiplier, updateMultiplier, points, updatePoints, pointCounter, menusound, playSound } from "./cookieclicker.js";
 
 console.log("Initial sMultiplier:", sMultiplier);
 
@@ -19,6 +20,10 @@ const multbar = document.getElementById("skill-mult")
 const timebar = document.getElementById("skill-time")
 const mcostUpg = document.getElementById("mcost")
 const tcostUpg = document.getElementById("tcost")
+const maxlevel = new Audio("upgradelevel.mp3")
+const error = new Audio("error.wav")
+const levelup = new Audio("levelup.wav")
+
 
 let pts = localStorage.getItem("pointSave")||0;
 pointCounter.innerHTML = `Points: ${pts}`
@@ -59,7 +64,7 @@ multupg.addEventListener("click", function upgMult() {
     localStorage.setItem("multbarWidth", newWidth);
     pointCounter.innerHTML = `Points: ${updatedPoints}`
     
-    
+    playSound(levelup)
   }
   else if (!isFirstUpgradeM) {  // Only subtract points for subsequent upgrades
     if (points >= oUpgM) {
@@ -86,11 +91,15 @@ multupg.addEventListener("click", function upgMult() {
       multbar.style.width = `${newWidth}%`; 
       localStorage.setItem("multbarWidth", newWidth);
       console.error("Invalid width stored in localStorage.");
-    
+      playSound(levelup)
     
       }
   } else if(localStorage.getItem("pointSave") < localStorage.getItem("firstUpg") || 500  ){
-    alert("You do not have enough points");
+   
+    playSound(error)
+    setTimeout(() => {
+      alert("You do not have enough points")
+    }, 0);
   }
  
 //console.log('maxUpgMult:', parseFloat(localStorage.getItem('maxUpgMult')));
@@ -100,7 +109,7 @@ multupg.addEventListener("click", function upgMult() {
 if (localStorage.getItem("multbarWidth") ==='100') {
     multupg.disabled = true
     multupg.style.opacity = '.4'
-
+    playSound(maxlevel)
     setTimeout(() => {
       alert("You have reached max upgrades");
     }, 0);
@@ -146,7 +155,7 @@ timeupg.addEventListener("click", function () {
       isFirstUpgradeT = false;
       localStorage.setItem("UpgOne", isFirstUpgradeT)
       updatePoints(updatedPoints);
-     
+      playSound(levelup)
       
     } else {
       
@@ -163,18 +172,22 @@ timeupg.addEventListener("click", function () {
       tcostUpg.innerHTML = `+5(s)  Time: $${roundedUpg}`
       pointCounter.innerHTML = `Points: ${updatedPoints}`
       updatePoints(updatedPoints); 
-      
+      playSound(levelup)
 
     }}
    else if (points < firstUpgT) {
-    alert("You do not have enough points")
+    
+    playSound(error)
+    setTimeout(() => {
+      alert("You do not have enough points")
+    }, 0);
    }
   
   
     if ( localStorage.getItem("timebarWidth") === '100') {
       timeupg.disabled = true
       timeupg.style.opacity = '.4'
-  
+      playSound(maxlevel)
       setTimeout(() => {
         alert("You have reached max upgrades");
       }, 0);
@@ -251,7 +264,6 @@ function startTimerFromLocalStorage() {
 
   document.addEventListener("click", function(event) {
     const dropdown = document.getElementById("myDropdown");
-    
     // Check if the clicked element is the button or inside the dropdown
     if (!event.target.matches('.dropbtn') && !dropdown.contains(event.target)) {
         dropdown.classList.remove("show");
@@ -261,6 +273,8 @@ function startTimerFromLocalStorage() {
 // Toggle the dropdown when clicking the dropbtn
 function myFunction() {
     const dropdown = document.getElementById("myDropdown");
+    playSound(menusound)
     dropdown.classList.toggle("show");} 
+   
 
 document.querySelector(".dropbtn").addEventListener("click", myFunction);
