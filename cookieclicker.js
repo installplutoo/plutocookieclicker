@@ -53,6 +53,7 @@ const speakericon = document.querySelector(".speaker")
 
 const tunes = new Audio("RuneFactorySpring.mp3")
 const menusound = new Audio("menubutton.mp3")
+const CClick = new Audio("Cookieclick.wav")
 document.addEventListener('DOMContentLoaded', function() {
 
     // All your code goes here
@@ -193,11 +194,13 @@ cookieClick.addEventListener("click", function(){
         console.log(`Score increment: ${score}`);
         scoreBrd.innerHTML = `Score: ${score}`;
         localStorage.setItem("scoreSave", score);
-        cookieClick.classList.add('.cookieclicks');
-
+       
+        cookieClick.style.transform = 'scale(0.85) translate(-55%,45%)';
+        
           setTimeout(function () {
-            cookieClick.classList.remove('.cookieclicks');
-        }, 300);
+            
+            cookieClick.style.transform = '';
+        }, 100);
     }
 });
 function TryAgain(){
