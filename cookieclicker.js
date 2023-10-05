@@ -195,7 +195,7 @@ cookieClick.addEventListener("click", function(){
         scoreBrd.innerHTML = `Score: ${score}`;
         localStorage.setItem("scoreSave", score);
        
-        cookieClick.style.transform = 'scale(0.85) translate(-55%,45%)';
+        cookieClick.style.transform = 'scale(0.95) translate(-52%,45%)';
         
           setTimeout(function () {
             
